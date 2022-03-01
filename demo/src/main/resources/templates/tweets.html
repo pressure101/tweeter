@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head><title>Tweets</title>
+
+
+    <style>
+        body {
+          font-family: "Lato", sans-serif;
+        }
+        
+        .sidenav {
+          height: 100%;
+          width: 160px;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: #111;
+          overflow-x: hidden;
+          padding-top: 20px;
+        }
+        
+        .sidenav a {
+          padding: 6px 8px 6px 16px;
+          text-decoration: none;
+          font-size: 25px;
+          color: #818181;
+          display: block;
+        }
+        
+        .sidenav a:hover {
+          color: #f1f1f1;
+        }
+        
+        .main {
+          margin-left: 160px; /* Same as the width of the sidenav */
+          font-size: 28px; /* Increased text to enable scrolling */
+          padding: 0px 10px;
+        }
+        
+        @media screen and (max-height: 450px) {
+          .sidenav {padding-top: 15px;}
+          .sidenav a {font-size: 18px;}
+        }
+        </style></head>
+
+<body> 
+    <div class="w3-black w3-center">
+        <h1>Current Feed!</h1>
+    </div>
+    <div class="sidenav">
+        <div class=""><a th:action="@{/}" th:object="${user}" method="post">My Feed</a></div>
+        <div class=""><a th:action="@{/}" th:object="${user}" method="post">My Tweets</a></div>
+        <div class="" ><a th:href="@{/}">Logout</a></div>
+    </div>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <div class="main">
+        <h1><p th:text="'Welcome ' + ${user.username} +  '!'"></p></h1>
+        <h3>Remember when you were about to quit? What a loser.</h3>
+    </div>
+</body>
+
+
+</html>
