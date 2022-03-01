@@ -38,27 +38,94 @@
           font-size: 28px; /* Increased text to enable scrolling */
           padding: 0px 10px;
         }
-        
         @media screen and (max-height: 450px) {
           .sidenav {padding-top: 15px;}
           .sidenav a {font-size: 18px;}
+        }
+        .close {
+          color: #aaaaaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+        .topright {
+          position: absolute;
+          top: 8px;
+          right: 16px;
+          font-size: 16px;
+        }
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+          background-color: #fefefe;
+          margin: auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%;
         }
         </style></head>
 
 <body> 
     <div class="w3-black w3-center">
         <h1>Current Feed!</h1>
+        <div class="topright"><button id="myBtn">Post Tweet</button></div>
+    </div>
+
+    <div id="tweetModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Tell us what's on your mind</p>
+        <form action="/postTweet" method="post" >
+          <p>Content <input type="text" name="content"/></p>
+          <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+      </div>
+    
     </div>
     <div class="sidenav">
-        <div class=""><a th:action="@{/}" th:object="${user}" method="post">My Feed</a></div>
-        <div class=""><a th:action="@{/}" th:object="${user}" method="post">My Tweets</a></div>
-        <div class="" ><a th:href="@{/}">Logout</a></div>
+      <div class=""><a th:href="@{/feed/all}">My Feed</a></div>
+      <div class=""><a th:href="@{/feed}">My Tweets</a></div>
+      <div class="" ><a th:href="@{/}">Logout</a></div>
     </div>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <div class="main">
-        <h1><p th:text="'Welcome ' + ${user.username} +  '!'"></p></h1>
+        <h1><p th:text="'Get a load of what people are talking about!'"></p></h1>
         <h3>Remember when you were about to quit? What a loser.</h3>
     </div>
+
+
+    <script>
+        var modal = document.getElementById("tweetModal");
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        var btn = document.getElementById("myBtn");
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+    </script>
 </body>
 
 
