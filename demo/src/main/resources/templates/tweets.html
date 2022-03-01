@@ -106,6 +106,13 @@
     <div class="main">
         <h1><p th:text="'Get a load of what people are talking about!'"></p></h1>
         <h3>Remember when you were about to quit? What a loser.</h3>
+        <tr th:each="tweet: ${tweets}">
+          <div>
+            <td th:text="${tweet.username}"></td>
+            <td th:text="${tweet.content}"></td>
+            <td th:text="${tweet.timeTweeted}"></td>
+          </div>
+        </tr>
     </div>
 
 

@@ -58,6 +58,13 @@
     <div class="main">
         <h1><p th:text="'Here are all your tweets!'"></p></h1>
         <h3>Remember when you were about to quit? What a loser.</h3>
+        <tr th:each="tweet: ${filteredTweets}">
+            <div>
+              <td th:text="${tweet.username}"></td>
+              <td th:text="${tweet.content}"></td>
+              <td th:text="${tweet.timeTweeted}"></td>
+            </div>
+          </tr>
     </div>
 </body>
 
