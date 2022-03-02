@@ -47,7 +47,7 @@
 
 <body> 
     <div class="w3-black w3-center">
-        <h1>Current Feed!</h1>
+        <h1 th:text="'My Tweets for ' + ${username}">My Feed</h1>
     </div>
     <div class="sidenav">
         <div class=""><a th:href="@{/feed/all}">My Feed</a></div>
@@ -57,7 +57,6 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <div class="main">
         <h1><p th:text="'Here are all your tweets!'"></p></h1>
-        <h3>Remember when you were about to quit? What a loser.</h3>
         <tr th:each="tweet: ${filteredTweets}">
             <div>
               <td th:text="${tweet.username}"></td>

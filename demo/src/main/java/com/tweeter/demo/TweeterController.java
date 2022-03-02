@@ -13,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -87,7 +85,7 @@ public class TweeterController {
         
         List<Tweets> allTweets = tweetsRepo.findAll();
         List<Tweets> filteredTweets = new ArrayList<Tweets>();
-        // filter out not applicable tweets
+        // filter out all tweets not owned by current user signed in
         for(Tweets tweet: allTweets){
             if(tweet.getUsername().equals(currentUsername)){
                 filteredTweets.add(tweet);
@@ -100,8 +98,7 @@ public class TweeterController {
     }
 
     @PostMapping("/postTweet")
-    public String postTweet(String content, Model model) {
-        model.addAttribute("username", currentUsername);
+    public String postTweet(String content) {
         // logic to insert into db
         System.out.println(content);
         Tweets tweet =  new Tweets();
