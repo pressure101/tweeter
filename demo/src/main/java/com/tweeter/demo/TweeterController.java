@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import jakarta.persistence.EntityNotFoundException;
+// import jakarta.persistence.EntityNotFoundException;
 
 
 @Controller
@@ -58,7 +58,7 @@ public class TweeterController {
         System.out.println(loggedInUser.getPassword());
         System.out.println(user.getPassword());
 
-        } catch (EntityNotFoundException e ){
+        } catch (Exception e ){
             return "error";
         }
         if(!loggedInUser.getPassword().equals(user.getPassword())){
