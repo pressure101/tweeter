@@ -1,39 +1,41 @@
-package com.tweeter.demo;
+package com.tweeter.demo.DataConfig;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import com.tweeter.demo.DataConfig.Tweets;
-import com.tweeter.demo.DataConfig.TweetsRepository;
-import com.tweeter.demo.DataConfig.User;
-import com.tweeter.demo.DataConfig.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 // import jakarta.persistence.EntityNotFoundException;
 
 
-@Controller
+@RestController
 public class TweeterController {
 
     String currentUsername;
 
-    @Autowired
-    private TweetsRepository tweetsRepo;
+    // @Autowired
+    // private TweetsRepository tweetsRepo;
 
-    @Autowired
-    private UserRepository userRepo;
+    // @Autowired
+    // private UserRepository userRepo;
     
     @GetMapping("/")
     public String loginPage(Model model) {
         model.addAttribute("user", new User());
         return "login";
+    }
+
+    @GetMapping("/hello-cavasier")
+    public String sayHelloCav() {
+
+        return "hey you";
     }
 
     @PostMapping("/") 
