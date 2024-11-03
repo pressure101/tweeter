@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Tweets {
+    
     // @Id
     // @Column(length = 100)
     // @GeneratedValue
