@@ -5,6 +5,7 @@ import com.tweeter.demo.repository.Tweets;
 import com.tweeter.demo.repository.User;
 //import com.tweeter.demo.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

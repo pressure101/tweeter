@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @RestController
+@RequestMapping("/v1")
 @AllArgsConstructor
 public class TweeterController {
 
@@ -25,10 +27,17 @@ public class TweeterController {
 
     private final GeneralService generalService;
 
+    // TODO commenting out so I can test basic functionality
+//    @GetMapping("/")
+//    public String loginPage(Model model) {
+//        model.addAttribute("user", new User());
+//        return "hello bitch";
+//        //return generalService.getTweets().getFirst().getUsername();
+//    }
+
     @GetMapping("/")
-    public String loginPage(Model model) {
-        model.addAttribute("user", new User());
-        return generalService.getTweets().getFirst().getUsername();
+    public String loginPage() {
+        return "I've been hit!";
     }
 
     @GetMapping("/hello-cavasier")
