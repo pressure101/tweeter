@@ -7,7 +7,6 @@ import java.util.List;
 import com.tweeter.demo.repository.Tweets;
 import com.tweeter.demo.repository.User;
 import com.tweeter.demo.service.GeneralService;
-import lombok.AllArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,15 +16,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 // import jakarta.persistence.EntityNotFoundException;
 
-
 @RestController
 @RequestMapping("/v1")
-@AllArgsConstructor
 public class TweeterController {
 
     private final String currentUsername = null;
 
     private final GeneralService generalService;
+
+    public TweeterController(GeneralService generalService) {
+        this.generalService = generalService;
+    }
 
     // TODO commenting out so I can test basic functionality
 //    @GetMapping("/")
@@ -40,9 +41,11 @@ public class TweeterController {
         return "I've been hit!";
     }
 
-    @GetMapping("/hello-cavasier")
-    public String sayHelloCav() {
-
+    @GetMapping("/hello-pressure")
+    public String helloPressure() {
+        List<Tweets> tweets = generalService.getTweets();
+        System.out.println("Starting to print");
+        tweets.forEach(System.out::println);
         return "hey you";
     }
 

@@ -1,21 +1,21 @@
 package com.tweeter.demo.repository;
 
-// import jakarta.persistence.Column;
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.Id;
-// import jakarta.persistence.Table;
+ import jakarta.persistence.Column;
+ import jakarta.persistence.Entity;
+ import jakarta.persistence.Id;
+ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@Entity
-//@Table(name = "Users")
+@Entity
+@Table(name = "users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-//     @Id
-//     @Column(length = 100)
+     @Id
+     @Column(length = 100)
     public String username;
     private String password;
     

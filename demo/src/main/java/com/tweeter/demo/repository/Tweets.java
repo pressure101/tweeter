@@ -1,12 +1,9 @@
 package com.tweeter.demo.repository;
 
+import java.time.Instant;
 import java.util.Date;
 
- import jakarta.persistence.Column;
- import jakarta.persistence.Entity;
- import jakarta.persistence.GeneratedValue;
- import jakarta.persistence.Id;
- import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,14 +14,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Tweets {
-    
-     @Id
-     @Column(length = 100)
-     @GeneratedValue
+    @Id
+    @Column(length = 100)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String username;
     private String content;
-    private Date timeTweeted;
+    private Date timeTweeted = Date.from(Instant.now());
 
     public Integer getId() {
         return id;
