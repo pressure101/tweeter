@@ -4,50 +4,53 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.tweeter.demo.repository.Tweets;
-import com.tweeter.demo.repository.User;
+import com.tweeter.demo.dto.Tweet;
+import com.tweeter.demo.repository.TweetEntity;
 import com.tweeter.demo.service.GeneralService;
+import lombok.AllArgsConstructor;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 // import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/v1")
+@AllArgsConstructor
 public class TweeterController {
 
     private final String currentUsername = null;
 
     private final GeneralService generalService;
 
-    public TweeterController(GeneralService generalService) {
-        this.generalService = generalService;
+    /* Initial endpoints to get application functional for demo */
+    @GetMapping("/hello-pressure")
+    public String helloPressure() {
+        return "hey you";
     }
 
-    // TODO commenting out so I can test basic functionality
+    @GetMapping()
+    public List<TweetEntity> getTweets() {
+        return generalService.getTweets();
+    }
+
+    @PostMapping()
+    void createTweet(@RequestBody CreateTweetRequest request) {
+        generalService.createTweet(Tweet.builder()
+                .username(request.getUsername())
+                .content(request.getContent())
+                .build());
+    }
+
+    /* END TEMP ENDPOINTS */
+
+    /* TODO: commenting out for initial rewrite but may need reference for later
 //    @GetMapping("/")
 //    public String loginPage(Model model) {
 //        model.addAttribute("user", new User());
 //        return "hello bitch";
 //        //return generalService.getTweets().getFirst().getUsername();
 //    }
-
-    @GetMapping("/")
-    public String loginPage() {
-        return "I've been hit!";
-    }
-
-    @GetMapping("/hello-pressure")
-    public String helloPressure() {
-        List<Tweets> tweets = generalService.getTweets();
-        System.out.println("Starting to print");
-        tweets.forEach(System.out::println);
-        return "hey you";
-    }
 
     @PostMapping("/") 
     public String submitLogin(Model model, User user) {
@@ -57,12 +60,12 @@ public class TweeterController {
         
         try {
         // loop through users in db --> max 5 users
-        // userList = userRepo.findAll();
-//        for(User loopedUser: userList) {
-//            if(loopedUser.username.equals(user.username)) {
-//                loggedInUser = loopedUser;
-//            }
-//        }
+         userList = userRepo.findAll();
+        for(User loopedUser: userList) {
+            if(loopedUser.username.equals(user.username)) {
+                loggedInUser = loopedUser;
+            }
+        }
         // check if the above loop found a user, if not throw error page
         if(loggedInUser.username == null){
             return "error";
@@ -81,6 +84,10 @@ public class TweeterController {
         return "home";
     }
 
+     */
+
+    /* Endpoints below shouldn't interfere with demo so leaving uncommented for now */
+
     @GetMapping("/feed/all") 
     public ModelAndView getAllTweets(Model model) {
         // logic to grab all tweets from db
@@ -97,7 +104,7 @@ public class TweeterController {
         ModelAndView mav = new ModelAndView("myTweets");
         
         //List<Tweets> allTweets = tweetsRepo.findAll();
-        List<Tweets> filteredTweets = new ArrayList<Tweets>();
+        List<TweetEntity> filteredTweets = new ArrayList<TweetEntity>();
         // filter out all tweets not owned by current user signed in
 //        for(Tweets tweet: allTweets){
 //            if(tweet.getUsername().equals(currentUsername)){
@@ -114,7 +121,7 @@ public class TweeterController {
     public String postTweet(String content) {
         // logic to insert into db
         System.out.println(content);
-        Tweets tweet =  new Tweets();
+        TweetEntity tweet =  new TweetEntity();
         tweet.setContent(content);
         tweet.setTimeTweeted(new Date());
         tweet.setUsername(currentUsername);
