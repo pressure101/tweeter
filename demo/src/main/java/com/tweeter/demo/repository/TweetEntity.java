@@ -18,7 +18,8 @@ import org.hibernate.annotations.ColumnDefault;
 @NoArgsConstructor
 public class TweetEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name="id", initialValue=2, allocationSize=100)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id")
     private Long id;
     private String username;
     private String content;
