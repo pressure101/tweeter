@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.tweeter.demo.dto.Tweet;
 import com.tweeter.demo.repository.TweetEntity;
-import com.tweeter.demo.service.GeneralService;
+import com.tweeter.demo.service.TweetsService;
 import lombok.AllArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +21,7 @@ public class TweeterController {
 
     private final String currentUsername = null;
 
-    private final GeneralService generalService;
+    private final TweetsService tweetsService;
 
     /* Initial endpoints to get application functional for demo */
     @GetMapping("/hello-pressure")
@@ -31,12 +31,12 @@ public class TweeterController {
 
     @GetMapping()
     public List<TweetEntity> getTweets() {
-        return generalService.getTweets();
+        return tweetsService.getTweets();
     }
 
     @PostMapping()
     void createTweet(@RequestBody CreateTweetRequest request) {
-        generalService.createTweet(Tweet.builder()
+        tweetsService.createTweet(Tweet.builder()
                 .username(request.getUsername())
                 .content(request.getContent())
                 .build());

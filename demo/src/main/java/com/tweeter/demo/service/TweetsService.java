@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GeneralService {
+public class TweetsService {
 
     private final TweetsRepository tweetsRepository;
     private final UserRepository userRepository;
 
-    public GeneralService(TweetsRepository tweetsRepository, UserRepository userRepository) {
+    public TweetsService(TweetsRepository tweetsRepository, UserRepository userRepository) {
         this.tweetsRepository = tweetsRepository;
         this.userRepository = userRepository;
     }
