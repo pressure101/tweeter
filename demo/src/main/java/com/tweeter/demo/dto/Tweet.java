@@ -3,7 +3,6 @@ package com.tweeter.demo.dto;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.Instant;
 import java.util.Date;
 
 @Builder
